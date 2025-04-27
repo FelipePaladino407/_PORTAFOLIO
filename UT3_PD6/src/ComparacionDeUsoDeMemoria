@@ -1,0 +1,22 @@
+Como se compara el uso de memoria de la implementacion del ejercicio con LinkedList (PD6) y el que
+usa ArreyList(PD8)?
+
+Relacionado con el sobrehead de memoria, en el ArreyList, es bajo, mientras que en el de LinkedList, se
+podria considerar alto (puesto a que hay 3 referencias por nodo, eso consume memoria).
+
+Si hablamos del acceso a elementos (sucursales en este caso), ambos disponen de un metodo de busqueda
+lineal, que es lento (O(n)). Sin embargo, los arrays cuentan con un tipo de busqueda por indice, desarrollado
+en el metodo buscarSucursalPorIndice o eliminarSucursalPorIndice, dentro de la clase "ControlDeSucursales".
+El metodo de busqueda es muy rapido (O(1)), lo que conlleva ademas un menor uso de memoria.
+
+En cuanto a la insercion o eliminacion.
+Aludiendo a lo primero, ambos son rapidos, pues, insertan el elemento al final de la lista, O(1).
+Los arrays cuentan con un metood de insercion por indice, pero no es eficiente (O(n)), puesto a que se debe
+realizar un desplazamiento indefinido si se quiere insertar en algun lado que no sea el final.
+Y en cuanto a la eliminacion, aunque los arrays tengan un metodo de eliminacion por indice, necesariamente se
+debe realizar un desplazamiento (como en la insercion), puesto a que se deben actualizar los indices
+de los elementos. Salvo por eso, tanto LinkedList como ArreyList disponen de un metodo de eliminacion lineal
+que es de complejidad O(n).
+
+En resumen, en general los arrays utilizan menos memoria para una misma cantidad de elementos que LinkedList.
+Esto se debe, principalmente a que ArrayList no necesita almacenar punteros extra que consuman mas memoria.
