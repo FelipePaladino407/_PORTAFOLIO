@@ -76,7 +76,7 @@ public class UtilFarmacos {
     public boolean preparadoViable(int sueroId, Lista<Integer> farmacosPropuestos) {
         Nodo<Integer> aux = farmacosPropuestos.getPrimero();
         while (aux != null) {
-            int idF = aux.getEtiqueta();
+            int idF = (int) aux.getEtiqueta();
             if (esBlanco(idF)) {
                 aux = aux.getSiguiente();
                 continue;

@@ -17,7 +17,6 @@ public class Programa {
 
         UtilFarmacos uf = new UtilFarmacos();
 
-        // Imprimo suero
         Suero s = uf.obtenerSuero(idSuero);
         if (s == null) {
             System.out.println("Suero no válido: " + idSuero);
@@ -25,7 +24,6 @@ public class Programa {
         }
         System.out.printf("Suero %d: %s%n", s.getId(), s.getDescripcion());
 
-        // Imprimo fármacos
         Nodo<Integer> aux = consulta.getPrimero();
         while (aux != null) {
             int idF = (int) aux.getEtiqueta();
@@ -38,7 +36,7 @@ public class Programa {
             aux = aux.getSiguiente();
         }
 
-        // Veredicto
+        // Doy el veredicto:
         boolean viable = uf.preparadoViable(idSuero, consulta);
         System.out.println( viable ? "VIABLE" : "NO VIABLE" );
     }

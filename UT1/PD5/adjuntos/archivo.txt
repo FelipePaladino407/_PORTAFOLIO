@@ -1,0 +1,44 @@
+substring – en todas sus variantes: Obtiene una subcadena, recibe como parámetro el índice a partir del cual extraerla
+
+split – en todas sus variantes: Divide un String en subcadenas en base a un delimitador que recibe como parámetro.
+
+subSequence: substring, pero devuelve un objeto CharSequence
+
+trim: Elimina todos los espacios en blanco que estén al principio y al final de una cadena
+
+toLowerCase: convierte a minúsculas
+toUpperCase: convierte a mayúsculas
+
+indexOf: devuelve el índice de una subcadena en un String 
+
+lastIndexOf: devuelve el índice de una subcadena en un String, pero cuenta desde el final
+
+contains: devuelve un Boolean si existe o no una subcadena especificada
+
+replace: reemplaza subcadenas en Strings
+
+replaceAll: busca una subcadena en base a un String una expresión regex y retorna el String modificado
+
+replaceFirst: Lo mismo que replaceAll pero sólo con la primera coincidencia
+
+-------------------------------------------
+
+      String original = " Choclo atún grasa mugre   ";
+
+        System.out.println(original.trim());
+        System.out.println(original.toUpperCase());
+        System.out.println(original.substring(7,11));
+        System.out.println(Arrays.toString(original.trim().split(" ")));
+        System.out.println(original.replace('a', 'X'));
+        System.out.println(original.indexOf("grasa"));
+        System.out.println(original.contains("chorro"));
+ 
+SALIDA:
+
+Choclo atún grasa mugre
+ CHOCLO ATÚN GRASA MUGRE   
+ atú
+[Choclo, atún, grasa, mugre]
+ Choclo Xtún grXsX mugre   
+13
+false
