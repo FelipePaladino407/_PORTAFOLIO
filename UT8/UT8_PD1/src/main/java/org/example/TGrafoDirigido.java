@@ -1,17 +1,23 @@
 package org.example;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
-import java.util.*;
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class TGrafoDirigido<T> implements IGrafoDirigido<T> {
 
-public class TGrafoDirigido implements IGrafoDirigido {
+    protected final Map<Comparable, IVertice<T>> vertices; // Lista de vértices del grafo.
 
-    private final Map<Comparable, IVertice> vertices; //lista de vertices del grafo.-
-
-
-    public TGrafoDirigido(Collection<IVertice> vertices, Collection<IArista> aristas) {
+    // Constructor que inicializa el grafo con una colección de vértices y aristas.
+    public TGrafoDirigido(Collection<IVertice<T>> vertices, Collection<IArista> aristas) {
         this.vertices = new HashMap<>();
-        for (IVertice vertice : vertices) {
-            insertarVertice(vertice.getEtiqueta());
+        for (IVertice<T> vertice : vertices) {
+            insertarVertice(vertice);
         }
         for (IArista arista : aristas) {
             insertarArista(arista);
@@ -19,18 +25,18 @@ public class TGrafoDirigido implements IGrafoDirigido {
     }
 
     /**
-     * Metodo encargado de eliminar una arista dada por un origen y destino. En
-     * caso de no existir la adyacencia, retorna falso. En caso de que las
-     * etiquetas sean invalidas, retorna falso.
+     * Método para eliminar una arista dada por un vértice origen y destino.
+     * Si la adyacencia no existe, retorna falso.
+     * Si las etiquetas son inválidas, retorna falso.
      *
      * @param nomVerticeOrigen
      * @param nomVerticeDestino
-     * @return
+     * @return Verdadero si la arista fue eliminada, falso en caso contrario.
      */
     @Override
     public boolean eliminarArista(Comparable nomVerticeOrigen, Comparable nomVerticeDestino) {
         if ((nomVerticeOrigen != null) && (nomVerticeDestino != null)) {
-            IVertice vertOrigen = buscarVertice(nomVerticeOrigen);
+            IVertice<T> vertOrigen = buscarVertice(nomVerticeOrigen);
             if (vertOrigen != null) {
                 return vertOrigen.eliminarAdyacencia(nomVerticeDestino);
             }
@@ -39,12 +45,12 @@ public class TGrafoDirigido implements IGrafoDirigido {
     }
 
     /**
-     * Metodo encargado de eliminar un vertice en el grafo. En caso de no
-     * existir el v�rtice, retorna falso. En caso de que la etiqueta sea
-     * inv�lida, retorna false.
+     * Método para eliminar un vértice en el grafo.
+     * Si el vértice no existe, retorna falso.
+     * Si la etiqueta es inválida, retorna falso.
      *
      * @param nombreVertice
-     * @return
+     * @return Verdadero si el vértice fue eliminado, falso en caso contrario.
      */
     @Override
     public boolean eliminarVertice(Comparable nombreVertice) {
@@ -56,17 +62,17 @@ public class TGrafoDirigido implements IGrafoDirigido {
     }
 
     /**
-     * Metodo encargado de verificar la existencia de una arista. Las etiquetas
-     * pasadas por par�metro deben ser v�lidas.
+     * Método para verificar la existencia de una arista.
+     * Las etiquetas pasadas por parámetro deben ser válidas.
      *
      * @param etiquetaOrigen
      * @param etiquetaDestino
-     * @return True si existe la adyacencia, false en caso contrario
+     * @return Verdadero si existe la arista, falso en caso contrario.
      */
     @Override
     public boolean existeArista(Comparable etiquetaOrigen, Comparable etiquetaDestino) {
-        IVertice vertOrigen = buscarVertice(etiquetaOrigen);
-        IVertice vertDestino = buscarVertice(etiquetaDestino);
+        IVertice<T> vertOrigen = buscarVertice(etiquetaOrigen);
+        IVertice<T> vertDestino = buscarVertice(etiquetaDestino);
         if ((vertOrigen != null) && (vertDestino != null)) {
             return vertOrigen.buscarAdyacencia(vertDestino) != null;
         }
@@ -74,14 +80,11 @@ public class TGrafoDirigido implements IGrafoDirigido {
     }
 
     /**
-     * Metodo encargado de verificar la existencia de un vertice dentro del
-     * grafo.-
+     * Método para verificar la existencia de un vértice dentro del grafo.
+     * La etiqueta especificada como parámetro debe ser válida.
      *
-     * La etiqueta especificada como par�metro debe ser v�lida.
-     *
-     * @param unaEtiqueta Etiqueta del v�rtice a buscar.-
-     * @return True si existe el vertice con la etiqueta indicada, false en caso
-     * contrario
+     * @param unaEtiqueta Etiqueta del vértice a buscar.
+     * @return Verdadero si existe el vértice con la etiqueta indicada, falso en caso contrario.
      */
     @Override
     public boolean existeVertice(Comparable unaEtiqueta) {
@@ -89,183 +92,344 @@ public class TGrafoDirigido implements IGrafoDirigido {
     }
 
     /**
-     * Metodo encargado de verificar buscar un vertice dentro del grafo.-
+     * Método para buscar un vértice dentro del grafo.
+     * La etiqueta especificada como parámetro debe ser válida.
      *
-     * La etiqueta especificada como parametro debe ser valida.
-     *
-     * @param unaEtiqueta Etiqueta del v�rtice a buscar.-
-     * @return El vertice encontrado. En caso de no existir, retorna nulo.
+     * @param unaEtiqueta Etiqueta del vértice a buscar.
+     * @return El vértice encontrado. Si no existe, retorna nulo.
      */
-    IVertice buscarVertice(Comparable unaEtiqueta) {
+    public IVertice<T> buscarVertice(Comparable unaEtiqueta) {
         return getVertices().get(unaEtiqueta);
     }
 
     /**
-     * Matodo encargado de insertar una arista en el grafo (con un cierto
-     * costo), dado su vertice origen y destino.- Para que la arista sea valida,
-     * se deben cumplir los siguientes casos: 1) Las etiquetas pasadas por
-     * parametros son v�lidas.- 2) Los vertices (origen y destino) existen
-     * dentro del grafo.- 3) No es posible ingresar una arista ya existente
-     * (miso origen y mismo destino, aunque el costo sea diferente).- 4) El
-     * costo debe ser mayor que 0.
+     * Método encargado de insertar una arista en el grafo (con un cierto
+     * costo), dado su vértice origen y destino. Para que la arista sea válida,
+     * se deben cumplir los siguientes casos:
+     * 1) Las etiquetas pasadas por parámetros son válidas.
+     * 2) Los vértices (origen y destino) existen dentro del grafo.
+     * 3) No es posible ingresar una arista ya existente (mismo origen y mismo destino, aunque el costo sea diferente).
+     * 4) El costo debe ser mayor que 0.
      *
-     * @param arista
+     * @param arista La arista a insertar
      * @return True si se pudo insertar la adyacencia, false en caso contrario
      */
-
-    public boolean insertarArista(TArista arista) {
-        boolean tempbool = false;
+    @Override
+    public boolean insertarArista(IArista arista) {
         if ((arista.getEtiquetaOrigen() != null) && (arista.getEtiquetaDestino() != null)) {
-            IVertice vertOrigen = buscarVertice(arista.getEtiquetaOrigen());
-            IVertice vertDestino = buscarVertice(arista.getEtiquetaDestino());
-            tempbool = (vertOrigen != null) && (vertDestino != null);
-            if (tempbool) {
-                //getLasAristas().add(arista);
+            IVertice<T> vertOrigen = buscarVertice(arista.getEtiquetaOrigen());
+            IVertice<T> vertDestino = buscarVertice(arista.getEtiquetaDestino());
+            if ((vertOrigen != null) && (vertDestino != null)) {
                 return vertOrigen.insertarAdyacencia(arista.getCosto(), vertDestino);
             }
-
         }
         return false;
     }
 
     /**
-     * Metodo encargado de insertar un vertice en el grafo.
+     * Método encargado de insertar un vértice en el grafo.
      *
-     * No pueden ingresarse v�rtices con la misma etiqueta. La etiqueta
-     * especificada como par�metro debe ser v�lida.
+     * No pueden ingresarse vértices con la misma etiqueta. La etiqueta
+     * especificada como parámetro debe ser válida.
      *
-     * @param unaEtiqueta Etiqueta del v�rtice a ingresar.
-     * @return True si se pudo insertar el vertice, false en caso contrario
+     * @param vertice El vértice a ingresar.
+     * @return True si se pudo insertar el vértice, false en caso contrario
      */
-    public boolean insertarVertice(Comparable unaEtiqueta) {
-        if ((unaEtiqueta != null) && (!existeVertice(unaEtiqueta))) {
-            TVertice vert = new TVertice(unaEtiqueta);
-            getVertices().put(unaEtiqueta, vert);
-            return getVertices().containsKey(unaEtiqueta);
-        }
-        return false;
-    }
-
     @Override
-    public boolean insertarVertice(IVertice vertice) {
+    public boolean insertarVertice(IVertice<T> vertice) {
         Comparable unaEtiqueta = vertice.getEtiqueta();
         if ((unaEtiqueta != null) && (!existeVertice(unaEtiqueta))) {
-            getVertices().put(unaEtiqueta, (TVertice) vertice);
+            getVertices().put(unaEtiqueta, vertice);
             return getVertices().containsKey(unaEtiqueta);
         }
         return false;
     }
 
-
+    /**
+     * Método que devuelve las etiquetas de los vértices en orden.
+     *
+     * @return Array de etiquetas ordenadas
+     */
     public Object[] getEtiquetasOrdenado() {
-        TreeMap<Comparable, IVertice> mapOrdenado = new TreeMap<>(this.getVertices());
+        TreeMap<Comparable, IVertice<T>> mapOrdenado = new TreeMap<>(this.getVertices());
         return mapOrdenado.keySet().toArray();
     }
 
+    /**
+     * Método que desmarca todos los vértices como visitados.
+     */
     @Override
     public void desvisitarVertices() {
-        for (IVertice vertice : this.vertices.values()) {
+        for (IVertice<T> vertice : this.vertices.values()) {
             vertice.setVisitado(false);
         }
     }
 
     /**
-     * @return the vertices
+     * Método que devuelve el mapa de vértices del grafo.
+     *
+     * @return Mapa de vértices
      */
     @Override
-    public Map<Comparable, IVertice> getVertices() {
+    public Map<Comparable, IVertice<T>> getVertices() {
         return vertices;
     }
 
+    /**
+     * Método que realiza una búsqueda en profundidad (BPF) a partir de un vértice dado.
+     *
+     * @param vertice El vértice de inicio para la BPF
+     * @return Colección de vértices visitados durante la BPF
+     */
+    @Override
+    public Collection<IVertice<T>> bpf(IVertice<T> vertice) {
+        this.desvisitarVertices();
+        Collection<IVertice<T>> visitados = new LinkedList<IVertice<T>>();
 
+        if(this.existeVertice(vertice.getEtiqueta())) {
+            IVertice<T> vert=this.buscarVertice(vertice.getEtiqueta());
+            vert.bpf(visitados);
+        }
+        return visitados;
+    }
+
+    /**
+     * Método que verifica si un camino tiene un ciclo.
+     *
+     * @param camino El camino a verificar
+     * @return True si el camino tiene un ciclo, false en caso contrario
+     */
     @Override
     public boolean tieneCiclo(TCamino camino) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Método no implementado aún.");
     }
 
+    /**
+     * Realiza una búsqueda en profundidad (BPF) en el grafo.
+     * @return Colección de vértices visitados durante la BPF.
+     */
+    @Override
+    public Collection<IVertice<T>> bpf() {
+        Collection<IVertice<T>> listaBpf = new LinkedList<IVertice<T>>();
+        this.desvisitarVertices();
+
+        if (vertices.isEmpty()) {
+            System.out.println("El grafo está vacio");
+        } else {
+            for (IVertice<T> vertV : vertices.values()) {
+                if (!vertV.getVisitado()) {
+                    vertV.bpf(listaBpf);
+                }
+            }
+        }
+        return listaBpf;
+    }
+
+    /**
+     * Realiza una búsqueda en profundidad (BPF) en el grafo a partir de un vértice dado.
+     * @param etiquetaOrigen Etiqueta del vértice de inicio para la BPF.
+     * @return Colección de vértices visitados durante la BPF.
+     */
+    @Override
+    public Collection<IVertice<T>> bpf(Comparable etiquetaOrigen) {
+        this.desvisitarVertices();
+        Collection<IVertice<T>> visitados= new LinkedList<IVertice<T>>();
+
+        if(this.existeVertice(etiquetaOrigen))
+        {
+            IVertice<T> vertice = this.buscarVertice(etiquetaOrigen);
+            vertice.bpf(visitados);
+        }
+        return visitados;
+    }
+
+    /**
+     * Obtiene el centro del grafo.
+     * @return Etiqueta del vértice que es el centro del grafo.
+     */
     @Override
     public Comparable centroDelGrafo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Iterator<IVertice<T>> it = vertices.values().iterator();
+        Comparable[] excentricidades = new Comparable[vertices.size()];
+        Comparable centro = Double.MAX_VALUE;
+        Comparable etiqueta_centro = null;
+        int i = 0;
+        while(it.hasNext()){
+            Comparable a = excentricidades[i];
+            Comparable etiqueta_vertice = it.next().getEtiqueta();
+
+            a = this.obtenerExcentricidad(etiqueta_vertice);
+            if(a.compareTo(centro) == -1){
+                centro = a;
+                etiqueta_centro = etiqueta_vertice;
+            }
+        }
+        return etiqueta_centro+" (" + centro.toString().trim()+")";
     }
 
+    /**
+     * Implementa el algoritmo de Floyd para encontrar el camino más corto entre todos los pares de vértices.
+     * @return Matriz de costos mínimos entre cada par de vértices.
+     */
     @Override
     public Double[][] floyd() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Double[][] matriz = UtilGrafos.obtenerMatrizCostos(vertices);
+        for (int k = 0; k < matriz.length; k++) {
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz.length; j++) {
+                    if(i!=j && i!=k && k!=j){
+                        if (matriz[i][k] + matriz[k][j] < matriz[i][j]) {
+                            matriz[i][j] = matriz[i][k] + matriz[k][j];
+                        }
+                    }
+                }
+            }
+        }
+
+        return matriz;
     }
 
-    @Override
-    public boolean insertarArista(IArista arista) {
-        return false;
-    }
-
+    /**
+     * Obtiene la excentricidad de un vértice.
+     * @param etiquetaVertice Etiqueta del vértice.
+     * @return Excentricidad del vértice.
+     */
     @Override
     public Comparable obtenerExcentricidad(Comparable etiquetaVertice) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Double[][] matriz = this.floyd();
+        Set<Comparable> etiquetasVertices = this.vertices.keySet();
+        Comparable[] array = new Comparable[matriz.length];
+        array = etiquetasVertices.toArray(array);
+        int columna = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == etiquetaVertice){
+                columna = i;
+                break;
+            }
+        }
+        Double ex = 0.0;
+        for (int i =0; i<matriz.length; i++){
+            if(matriz[i][columna]>ex && matriz[i][columna]<Double.MAX_VALUE && matriz[i][columna]>0.0){
+                ex = matriz[i][columna];
+            }
+        }
+        if (ex == 0.0){
+            ex = Double.MAX_VALUE;
+        }
+        return ex;
     }
 
+    /**
+     * Implementa el algoritmo de Warshall para determinar la conectividad entre los vértices del grafo.
+     * @return Matriz de conectividad.
+     */
     @Override
     public boolean[][] warshall() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Double[][] matriz = UtilGrafos.obtenerMatrizCostos(getVertices());
+        boolean[][] war = new boolean[matriz.length][matriz.length];
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                war[i][j] = false;
+
+                if (i != j && matriz[i][j] != Double.MAX_VALUE) {
+                    war[i][j] = true;
+                }
+            }
+        }
+        for (int k = 0; k < war.length; k++) {
+            for (int i = 0; i < war.length; i++) {
+                for (int j = 0; j < war.length; j++) {
+                    if ((i != k) && (k != j) && (i != j)) {
+                        if (!war[i][j]) {
+                            war[i][j] = war[i][k] && war[k][j];
+                        }
+                    }
+                }
+            }
+        }
+        return war;
     }
 
+    /**
+     * Obtiene todos los caminos entre dos vértices.
+     * @param etiquetaOrigen Etiqueta del vértice origen.
+     * @param etiquetaDestino Etiqueta del vértice destino.
+     * @return Colección de todos los caminos entre los dos vértices.
+     */
     @Override
-    public TCaminos todosLosCaminos(Comparable etiquetaOrigen, Comparable etiquetaDestino) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public TCaminos<T> todosLosCaminos(Comparable etiquetaOrigen, Comparable etiquetaDestino) {
+        IVertice<T> v = buscarVertice(etiquetaOrigen);
+        IVertice<T> u = buscarVertice(etiquetaDestino);
+        if ((v != null)&&(u != null)) {
+            TCaminos<T> todosLosCaminos = new TCaminos<T>();
+            TCamino<T> caminoPrevio = new TCamino<T>(v);
+            v.todosLosCaminos(etiquetaDestino, caminoPrevio, todosLosCaminos);
+            return todosLosCaminos;
+        }
+        return null;
     }
 
+    /**
+     * Verifica si existe un ciclo en el grafo a partir de un vértice dado.
+     * @param etiquetaOrigen Etiqueta del vértice de inicio.
+     * @return Verdadero si existe un ciclo, falso en caso contrario.
+     */
     @Override
     public boolean tieneCiclo(Comparable etiquetaOrigen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        desvisitarVertices();
+        boolean res = false;
+
+        for (IVertice<T> vertV : vertices.values()) {
+            if (!vertV.getVisitado()) {
+                LinkedList camino = new LinkedList();
+                camino.add(vertV.getEtiqueta());
+                res = vertV.tieneCiclo(camino);
+                return true;
+            }
+        }
+        return res;
     }
 
+    /**
+     * Verifica si existe un ciclo en el grafo.
+     * @return Verdadero si existe un ciclo, falso en caso contrario.
+     */
     @Override
     public boolean tieneCiclo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Collection<IVertice> bpf() {
-        List<IVertice> resultado = new LinkedList<>();
         desvisitarVertices();
-        for (IVertice v : vertices.values()) {
-            if (!v.getVisitado()) {
-                dfs(v, resultado);
+        boolean res = false;
+
+        for (IVertice<T> vertV : vertices.values()) {
+            if (!vertV.getVisitado()) {
+                LinkedList camino = new LinkedList();
+                camino.add(vertV.getEtiqueta());
+                res = vertV.tieneCiclo(camino);
+                if(res){
+                    return true;
+                }
             }
         }
-        return resultado;
-    }
-    @Override
-    public Collection<IVertice> bea() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return res;
     }
 
+    /**
+     * Realiza una búsqueda en amplitud (BEA) en el grafo.
+     * @return Colección de vértices visitados durante la BEA.
+     */
     @Override
-    public Collection<IVertice> bpf(IVertice vertice) {
-        List<IVertice> resultado = new LinkedList<>();
-        desvisitarVertices();
-        dfs(vertice, resultado);
-        return resultado;
-    }
-
-    @Override
-    public Collection<IVertice> bpf(Comparable etiquetaOrigen) {
-        IVertice v = buscarVertice(etiquetaOrigen);
-        if (v == null) return Collections.emptyList();
-        return bpf(v);
-    }
-
-    private void dfs(IVertice v, Collection<IVertice> visitados) {
-        v.setVisitado(true);
-        visitados.add(v);
-        for (Object PEPE : v.getAdyacentes()) {
-            IAdyacencia ady = (IAdyacencia) PEPE;
-            TVertice w = (TVertice) ady.getDestino();
-            if (!w.getVisitado()) {
-                dfs(w, visitados);
+    public Collection<IVertice<T>> bea() {
+        if (this.getVertices().isEmpty()) {
+            return null;
+        } else {
+            this.desvisitarVertices();
+            for (IVertice<T> vertV : this.getVertices().values()) {
+                if (!vertV.getVisitado()) {
+                    Collection<IVertice<T>> verts = new LinkedList<IVertice<T>>();
+                    vertV.bea(verts);
+                    return verts;
+                }
             }
         }
+        return null;
     }
-
-
-
 }

@@ -1,10 +1,16 @@
 package org.example;
 
+import org.example.Utils.AristaPQ;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.*;
 
-public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoNoDirigido {
+/**
+ * Clase TGrafoNoDirigido que extiende de TGrafoDirigido e implementa IGrafoNoDirigido.
+ * Esta clase representa un grafo no dirigido.
+ * @param <T> El tipo de los datos que se guardan en cada vértice.
+ */
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class TGrafoNoDirigido<T> extends TGrafoDirigido<T> implements IGrafoNoDirigido<T> {
     protected TAristas lasAristas = new TAristas();
 
     /**
@@ -12,10 +18,9 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoNoDirigido
      * @param vertices Colección de vértices del grafo.
      * @param aristas Colección de aristas del grafo.
      */
-    public TGrafoNoDirigido(Collection<IVertice> vertices, Collection<IArista> aristas) {
+    public TGrafoNoDirigido(Collection<IVertice<T>> vertices, Collection<IArista> aristas) {
         super(vertices, new LinkedList<>());
         this.lasAristas = new TAristas();
-        this.lasAristas.insertarAmbosSentidos(aristas);
 
         for(IArista arista : aristas) {
             this.insertarArista(arista);
@@ -30,11 +35,13 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoNoDirigido
      */
     @Override
     public boolean insertarArista(IArista arista) {
-        // Verificar si la arista ya existe
-        if (this.lasAristas.buscar(arista.getEtiquetaOrigen(), arista.getEtiquetaDestino()) != null) {
+        // Verificar si la arista ya existe.
+        if (this.lasAristas.buscar(arista.getEtiquetaOrigen(), arista.getEtiquetaDestino()) != null ||
+        this.lasAristas.buscar(arista.getEtiquetaDestino(), arista.getEtiquetaOrigen()) != null) {
             return false;
         }
 
+        // Creación de la arista inversa.
         TArista arInv = new TArista(arista.getEtiquetaDestino(), arista.getEtiquetaOrigen(), arista.getCosto());
         boolean success = super.insertarArista(arista) && super.insertarArista(arInv);
 
@@ -58,32 +65,36 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoNoDirigido
      * @return El árbol de expansión mínima del grafo.
      */
     @Override
-    public IGrafoNoDirigido Prim() {
-        IGrafoNoDirigido arbolPrim = new TGrafoNoDirigido(this.getVertices().values(), new LinkedList<>());
+    public IGrafoNoDirigido<T> Prim() {
+
+        Collection<IVertice<T>> mstVertices = new LinkedList<>();
+        for(IVertice<T> vertice: this.getVertices().values()) {
+            mstVertices.add(new TVertice<>(vertice.getEtiqueta()));
+        }
+
+        IGrafoNoDirigido<T> arbolPrim = new TGrafoNoDirigido(mstVertices, new LinkedList<>());
         double costoTotal = 0.0d;
 
         if (this.getVertices().isEmpty()) {
-            System.out.println(this.getVertices());
             return arbolPrim;
         }
 
         TAristas aristas = this.getLasAristas();
         LinkedList<Comparable> vertices = new LinkedList<>();
-        for (IVertice vertice : this.getVertices().values()) {
+        for (IVertice<T> vertice : this.getVertices().values()) {
             vertices.add(vertice.getEtiqueta());
         }
 
         Collection<Comparable> U = new LinkedList<>();
-
         U.add(vertices.removeFirst());
+
         while (!vertices.isEmpty()) {
             IArista a = aristas.buscarMin(U, vertices);
             if (a == null) {
                 throw new IllegalStateException("No se encontró una arista válida entre U y V-U. ¿El grafo es conexo?");
             }
-            IVertice v = this.getVertices().get(a.getEtiquetaDestino());
-            vertices.remove(v.getEtiqueta());
-            U.add(v.getEtiqueta());
+            vertices.remove(a.getEtiquetaDestino());
+            U.add(a.getEtiquetaDestino());
             arbolPrim.insertarArista(a);
             costoTotal += a.getCosto();
         }
@@ -91,72 +102,94 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoNoDirigido
         return arbolPrim;
     }
 
-
     /**
-     * Metodo con Big O (n log(n)).
-     *
-    public TGrafoNoDirigido PrimEficiente() {
-        Map<Comparable, TVertice> vertices = this.getVertices();
-        if (vertices.isEmpty()) return new TGrafoNoDirigido(Collections.emptyList(), Collections.emptyList());
+     * Algoritmo de prim mamadisimo (N Log(N)).
+     */
+    @Override
+    public TGrafoNoDirigido<T> PrimEficiente() {
+        Map<Comparable, IVertice<T>> vertices = this.getVertices();
+        if (vertices.isEmpty()) {
+            return new TGrafoNoDirigido<>(Collections.emptyList(), Collections.emptyList());
+        }
 
-        // Conjunto en donde se almacenan los vertices ya visitados para el spanning tree.
+        // Crear nuevos vértices para el MST
+        Map<Comparable, IVertice<T>> mstVerticesMap = new HashMap<>();
+        for (IVertice<T> vertice : vertices.values()) {
+            mstVerticesMap.put(vertice.getEtiqueta(), new TVertice<>(vertice.getEtiqueta()));
+        }
+
+        // Conjunto para vértices ya en el MST
         Set<Comparable> enSpanningTree = new HashSet<>();
-        // La dichosa cola de prioridad que nos baja el Big O.
         PriorityQueue<AristaPQ> pq = new PriorityQueue<>();
+        double costoTotal = 0.0d;  // Como en el prim() original.
 
+        // Inicializar con el primer vértice
         Comparable start = vertices.keySet().iterator().next();
         enSpanningTree.add(start);
 
-        // Agrega bordes iniciales.
-        TVertice v0 = vertices.get(start);
-        for (Object hugo : v0.getAdyacentes()) {
-            TAdyacencia ady = (TAdyacencia) hugo;
+        // Agregar aristas iniciales a la cola de prioridad
+        IVertice<T> v0 = vertices.get(start);
+        for (IAdyacencia ady : v0.getAdyacentes()) {
             pq.offer(new AristaPQ(start, ady.getDestino().getEtiqueta(), ady.getCosto()));
         }
 
-        List<TArista> mstEdges = new LinkedList<>();
+        List<IArista> mstEdges = new LinkedList<>();
 
         while (!pq.isEmpty() && enSpanningTree.size() < vertices.size()) {
-            AristaPQ vertice = pq.poll();
-            if (enSpanningTree.contains(vertice.getTo())) continue;
+            AristaPQ minArista = pq.poll();
+            Comparable destino = minArista.getTo();
 
-            enSpanningTree.add(vertice.getTo());
-            mstEdges.add(new TArista(vertice.getFrom(), vertice.getTo(), vertice.getCosto()));
+            // Si el destino ya está en el MST, saltar
+            if (enSpanningTree.contains(destino)) continue;
 
-            TVertice newV = vertices.get(vertice.getTo());;
-            for (Object hugo : newV.getAdyacentes()) {
-                TAdyacencia ady = (TAdyacencia) hugo;
-                if (!enSpanningTree.contains(ady.getDestino().getEtiqueta())) {
-                    pq.offer(new AristaPQ(vertice.getTo(), ady.getDestino().getEtiqueta(), ady.getCosto()));
+            // Agregar vértice al MST y registrar arista
+            enSpanningTree.add(destino);
+            IArista nuevaArista = new TArista(minArista.getFrom(), destino, minArista.getCosto());
+            mstEdges.add(nuevaArista);
+            costoTotal += minArista.getCosto(); // Acumulo el costo totality.
+
+            // Procesar adyacentes del nuevo vértice
+            IVertice<T> nuevoVertice = vertices.get(destino);
+            for (IAdyacencia ady : nuevoVertice.getAdyacentes()) {
+                Comparable vecino = ady.getDestino().getEtiqueta();
+                if (!enSpanningTree.contains(vecino)) {
+                    pq.offer(new AristaPQ(destino, vecino, ady.getCosto()));
                 }
             }
         }
 
-        // Se devuelven solo las aristas de MST
-        return new TGrafoNoDirigido(vertices.values(), mstEdges);
-    }
-     **/
+        // Construir y retornar el MST
+        TGrafoNoDirigido<T> mst = new TGrafoNoDirigido<>(mstVerticesMap.values(), mstEdges);
 
-    @Override
-    public TGrafoNoDirigido Kruskal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        System.out.println("Costo total con prim eficiente: " + costoTotal);
+        return mst;
     }
 
     /**
-     * UT8_PD1 Ejercicio 3.
-     * @param etiquetaOrigen
+     * Método para obtener el árbol de expansión mínima del grafo utilizando el algoritmo de Kruskal.
+     * @return El árbol de expansión mínima del grafo.
      */
     @Override
-    public Collection<IVertice> bea(Comparable etiquetaOrigen) {
+    public IGrafoNoDirigido<T> Kruskal() {
+
+        return null;
+    }
+
+    /**
+     * Método para realizar una búsqueda en amplitud en el grafo.
+     * @param etiquetaOrigen La etiqueta del vértice de origen.
+     * @return Una colección de vértices que representa el resultado de la búsqueda.
+     */
+    @Override
+    public Collection<IVertice<T>> bea(Comparable etiquetaOrigen) {
         if (this.getVertices().isEmpty()) {
             return null;
         } else {
             this.desvisitarVertices();
             if(this.existeVertice(etiquetaOrigen))
             {
-                IVertice vert = super.buscarVertice(etiquetaOrigen);
-                Collection<IVertice> verts = new LinkedList<IVertice>();
+                IVertice<T> vert = super.buscarVertice(etiquetaOrigen);
+                Collection<IVertice<T>> verts = new LinkedList<IVertice<T>>();
                 vert.bea(verts);
                 return verts;
             }
@@ -180,7 +213,8 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoNoDirigido
      * @return Verdadero si los vértices están conectados, falso en caso contrario.
      */
     @Override
-    public boolean conectados(IVertice origen, IVertice destino) {
+    public boolean conectados(IVertice<T> origen, IVertice<T> destino) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

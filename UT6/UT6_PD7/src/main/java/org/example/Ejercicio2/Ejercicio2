@@ -1,0 +1,43 @@
+Como esta implementado internamente un HashMap?
+
+. Mediante un arrey de "Buckets": Un array de entradas.
+
+. Cada posicion del arrey puede tener una lista enlazada (o, mas moderno, un arbol rojo-negro).
+
+. Al insertar un objeto:
+- Se calcula su hashCode().
+- Se obtiene el indice con hash % capacity.
+- Se inserta en la lista correspondiente.
+
+
+DIAGRAMA PRECARIO
+
+HashMap (size = 16)
+[0] -> null
+[1] -> null
+[2] -> null
+[3] -> null
+...
+[15] -> null
+
+Usamos las palabras: Hola, HolaMundo, HashMap y Colecciones.
+"Hola" -> hashCode: 69420 -> indice: 69420 % 16 = 5.
+"HolaMundo" -> hashCode: -934472496 -> indice: idem % 16 = 0.
+"HashMap" -> hashCode: 19117444283 -> indice: idem % 16 = 11.
+"Colecciones" -> hashCode: 1441743094 -> indice: idem % 16 = 6.
+
+ESTADO DEL MAPA HASH
+HashMap (size = 16)
+[0] -> "HolaMundo"
+[1] -> null
+[2] -> null
+[3] -> null
+...
+[5] -> "Hola"
+[6] -> "Colecciones"
+...
+[11] -> "HashMap"
+...
+[15] -> null
+
+// Si hubiera colisiones, se encadenan.

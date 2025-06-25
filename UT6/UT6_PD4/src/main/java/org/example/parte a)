@@ -1,0 +1,17 @@
+Estructura elegida para la solucion:
+MAPA HASH - Por que????
+
+Requisitos:
+. Almacenar cada palabra como clave.
+. Asociarle una frecuencia (cantidad de veces que aparece).
+. Acceder rápidamente a la frecuencia de una palabra.
+. Posiblemente, ordenar por frecuencia después.
+
+El HashMap cumple barbaro con estas especificaciones.
+Particularmente permite acceder a la frecuencia de una palabra en O(1).
+Permite insertar en O(1).
+Evita duplicados, pues las claves en un Map de java no pueden repetirse.
+Lo unico mas dudoso es lo de ordenar por frecuencia, lo cual no puede hacerse directamente,
+pero podemos ordenar las entradas usando "List<Map.Entry<String, Integer>>".
+
+En resumen, usaremos HashMap.

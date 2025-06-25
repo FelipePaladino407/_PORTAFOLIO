@@ -17,7 +17,7 @@ public interface IGrafoNoDirigido<T> extends IGrafoDirigido<T> {
      *
      * @return una colección de vértices en el orden en que fueron visitados
      */
-    public Collection<IVertice> bea();
+    public Collection<IVertice<T>> bea();
 
     /**
      * Realiza una búsqueda en amplitud (BEA) en el grafo a partir de un vértice con una etiqueta dada.
@@ -25,7 +25,7 @@ public interface IGrafoNoDirigido<T> extends IGrafoDirigido<T> {
      * @param etiquetaOrigen la etiqueta del vértice de inicio
      * @return una colección de vértices en el orden en que fueron visitados
      */
-    public Collection<IVertice> bea(Comparable etiquetaOrigen);
+    public Collection<IVertice<T>> bea(Comparable etiquetaOrigen);
 
     /**
      * Verifica si el grafo es conexo.
@@ -41,19 +41,21 @@ public interface IGrafoNoDirigido<T> extends IGrafoDirigido<T> {
      * @param destino el vértice de destino
      * @return true si los vértices están conectados, false en caso contrario
      */
-    public boolean conectados(IVertice origen, IVertice destino);
+    public boolean conectados(IVertice<T> origen, IVertice<T> destino);
 
     /**
      * Ejecuta el algoritmo de Prim en el grafo para encontrar el árbol de expansión mínima.
      *
      * @return el árbol de expansión mínima del grafo
      */
-    public IGrafoNoDirigido Prim();
+    public IGrafoNoDirigido<T> Prim();
+
+    public IGrafoNoDirigido<T> PrimEficiente();
 
     /**
      * Ejecuta el algoritmo de Kruskal en el grafo para encontrar el árbol de expansión mínima.
      *
      * @return el árbol de expansión mínima del grafo
      */
-    public IGrafoNoDirigido Kruskal();
+    public IGrafoNoDirigido<T> Kruskal();
 }
