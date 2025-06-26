@@ -1,0 +1,8 @@
+COMPARACION DE TIEMPOS DE EJECUCION
+------------------------------------
+
+IMPLEMENTACIÓN CON ARRAY
+Promedio de 10000 busquedas de la palabra "perro": 1.6^-4 ms
+
+IMPLEMENTACIÓN CON HASHMAP
+Promedio de 10000 busquedas de la palabra "perro": 4.3^-4 ms
