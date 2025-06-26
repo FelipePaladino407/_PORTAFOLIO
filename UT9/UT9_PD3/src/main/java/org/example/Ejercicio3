@@ -1,0 +1,27 @@
+INVESTIGACION Ejericio 3.
+https://dzone.com/articles/algorithm-week-quicksort-three
+
+Según el artículo “Algorithm-week: Quicksort-three” (Java DZone), desde Java 7 se usa un Quicksort de dos pivotes (“dual-pivot”), cuyas características principales son:
+
+Dos pivotes
+𝑝
+<
+𝑞
+p<q en lugar de uno, particionando en tres zonas:
+
+< p
+
+p ≤ x ≤ q
+
+> q
+
+Comparaciones promedio ≃ 1.9 n log n (frente a 2 n log n de single-pivot).
+
+Peor caso sigue siendo O(n²), pero muy improbable con pivotes “aleatorios” (se usan medianas de 3).
+
+Para subarreglos pequeños (< 47 elementos) hace Insertion Sort (cut-off).
+
+No es estable (altera el orden relativo de claves iguales).
+
+Para objetos, Java usa TimSort (estable, O(n) mejor caso en datos parcialmente ordenados).
+
