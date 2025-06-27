@@ -1,12 +1,11 @@
 package org.example.Utils;
-import org.example.*;
+
+import org.example.IArista;
+import org.example.IGrafoDirigido;
+import org.example.IVertice;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
