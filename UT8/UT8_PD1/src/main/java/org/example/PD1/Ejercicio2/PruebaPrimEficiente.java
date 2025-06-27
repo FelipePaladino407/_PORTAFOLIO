@@ -12,10 +12,12 @@ public class PruebaPrimEficiente {
     public static void main(final String[] args) {
 
         IGrafoNoDirigido grafito = UtilGrafos.cargarGrafo(
-                "/home/felipe/Documents/AED/UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/vertices.txt",
-                "/home/felipe/Documents/AED/UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/aristas.txt",
+                "/home/felipe/Documents/AED/_PORTAFOLIO/UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/vertices.txt",
+                "/home/felipe/Documents/AED/_PORTAFOLIO/UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/aristas.txt",
                 false,
-                TGrafoNoDirigido.class);
+                TGrafoNoDirigido.class
+        );
+
 
         IGrafoNoDirigido mstEficiente = grafito.PrimEficiente();
 

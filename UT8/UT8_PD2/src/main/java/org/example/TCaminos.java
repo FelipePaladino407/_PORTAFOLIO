@@ -1,39 +1,53 @@
 package org.example;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.util.Collection;
 import java.util.LinkedList;
 
 /**
- *
- * @author diego
+ * Esta clase representa una colección de caminos.
+ * Cada camino es una instancia de la clase TCamino.
  */
-public class TCaminos {
-    
-    private Collection<TCamino> caminos;
+public class TCaminos<T> {
 
+    private Collection<TCamino<T>> caminos;
+
+    /**
+     * Constructor de la clase TCaminos.
+     * Inicializa la colección de caminos como una lista vacía.
+     */
     public TCaminos() {
         this.caminos = new LinkedList<>();
     }
-    
-    public String imprimirCaminos(){
+
+    /**
+     * Genera una cadena de texto con las etiquetas de los vértices de cada camino en la colección.
+     *
+     * @return una cadena de texto con las etiquetas de los vértices de cada camino en la colección
+     */
+    public String imprimirCaminos() {
         StringBuilder sb = new StringBuilder();
-        for (TCamino camino : caminos){
-            sb.append(camino.imprimirEtiquetas()+"\n");
+        for (TCamino<T> camino : caminos) {
+            sb.append(camino.imprimirEtiquetas());
+            sb.append(" - Costo: ");
+            sb.append(camino.getCostoTotal());
+            sb.append("\n");
         }
         return sb.toString();
     }
 
-    public void imprimirCaminosConsola(){
+    /**
+     * Imprime en la consola las etiquetas de los vértices de cada camino en la colección.
+     */
+    public void imprimirCaminosConsola() {
         System.out.println(imprimirCaminos());
     }
 
-    public Collection<TCamino> getCaminos() {
+    /**
+     * Devuelve la colección de caminos.
+     *
+     * @return la colección de caminos
+     */
+    public Collection<TCamino<T>> getCaminos() {
         return caminos;
     }
-        
 }

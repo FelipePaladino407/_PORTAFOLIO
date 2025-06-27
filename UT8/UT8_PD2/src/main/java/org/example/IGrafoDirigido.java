@@ -19,14 +19,14 @@ public interface IGrafoDirigido<T> {
      *
      * @return una colección de vértices en el orden en que fueron visitados
      */
-    Collection<IVertice> bpf();
+    Collection<IVertice<T>> bpf();
 
     /**
      * Realiza una búsqueda en amplitud (BEA) en el grafo.
      *
      * @return una colección de vértices en el orden en que fueron visitados
      */
-    Collection<IVertice> bea();
+    Collection<IVertice<T>> bea();
 
     /**
      * Realiza una búsqueda en profundidad (BPF) en el grafo a partir de un vértice dado.
@@ -34,7 +34,7 @@ public interface IGrafoDirigido<T> {
      * @param vertice el vértice de inicio
      * @return una colección de vértices en el orden en que fueron visitados
      */
-    Collection<IVertice> bpf(IVertice vertice);
+    Collection<IVertice<T>> bpf(IVertice<T> vertice);
 
     /**
      * Realiza una búsqueda en profundidad (BPF) en el grafo a partir de un vértice con una etiqueta dada.
@@ -42,7 +42,7 @@ public interface IGrafoDirigido<T> {
      * @param etiquetaOrigen la etiqueta del vértice de inicio
      * @return una colección de vértices en el orden en que fueron visitados
      */
-    Collection<IVertice> bpf(Comparable etiquetaOrigen);
+    Collection<IVertice<T>> bpf(Comparable etiquetaOrigen);
 
     /**
      * Devuelve la etiqueta del centro del grafo.
@@ -112,7 +112,7 @@ public interface IGrafoDirigido<T> {
      * @param vertice el vértice a insertar
      * @return true si se pudo insertar el vértice, false en caso contrario
      */
-    boolean insertarVertice(IVertice vertice);
+    boolean insertarVertice(IVertice<T> vertice);
 
     /**
      * Obtiene la excentricidad de un vértice.
@@ -134,7 +134,7 @@ public interface IGrafoDirigido<T> {
      *
      * @return un mapa de vértices del grafo
      */
-    Map<Comparable, IVertice> getVertices();
+    Map<Comparable, IVertice<T>> getVertices();
 
     /**
      * Desmarca todos los vértices del grafo como no visitados.
@@ -148,7 +148,7 @@ public interface IGrafoDirigido<T> {
      * @param etiquetaDestino etiqueta del vértice destino
      * @return todos los caminos entre los dos vértices
      */
-    TCaminos todosLosCaminos(Comparable etiquetaOrigen, Comparable etiquetaDestino);
+    TCaminos<T> todosLosCaminos(Comparable etiquetaOrigen, Comparable etiquetaDestino);
 
     /**
      * Verifica si un camino tiene un ciclo.
@@ -156,7 +156,7 @@ public interface IGrafoDirigido<T> {
      * @param camino el camino a verificar
      * @return true si el camino tiene un ciclo, false en caso contrario
      */
-    boolean tieneCiclo(TCamino camino);
+    boolean tieneCiclo(TCamino<T> camino);
 
     /**
      * Verifica si existe un ciclo a partir de un vértice.

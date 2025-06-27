@@ -58,4 +58,6 @@ public interface IGrafoNoDirigido<T> extends IGrafoDirigido<T> {
      * @return el árbol de expansión mínima del grafo
      */
     public IGrafoNoDirigido<T> Kruskal();
+
+
 }

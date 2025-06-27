@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="89f2d19e-20d4-449c-83b9-e215acf19de2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/IAdyacencia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/IArista.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/IAristas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/ICamino.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/IGrafoDirigido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/IGrafoNoDirigido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/IGrafoRedElectrica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/IVertice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/Programa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TAdyacencia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TArista.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TAristas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TCamino.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TCaminos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TGrafoDirigido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TGrafoNoDirigido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TGrafoRedElectrica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/TVertice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/Utils/AristaPQ.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/Utils/ManejadorArchivosGenerico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/Utils/UtilGrafos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/barrio.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../UT8/UT8_PD3/src/main/java/org/example/PD3/distancias.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../parcial2_2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../parcial2_2024/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/PruebaPrimEficiente.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/PruebaPrimEficiente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/PruebasPrim.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/src/main/java/org/example/PD1/Ejercicio2/PruebasPrim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/IGrafoNoDirigido.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/IGrafoNoDirigido.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/PD1/Ejercicio2/PruebasPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/PD1/Ejercicio2/PruebasPrim.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/PD1/Ejercicio3/PruebasBea.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/PD1/Ejercicio3/PruebasBea.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/TAdyacencia.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/TAdyacencia.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/TGrafoNoDirigido.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/TGrafoNoDirigido.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/TVertice.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD1/target/classes/org/example/TVertice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD2/src/main/java/org/example/IGrafoNoDirigido.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD2/src/main/java/org/example/IGrafoNoDirigido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UT8/UT8_PD2/src/main/java/org/example/TGrafoNoDirigido.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UT8/UT8_PD2/src/main/java/org/example/TGrafoNoDirigido.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2z6poVAGTA31cgrXvaKpWIXMuVS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/felipe/Documents/AED/_PORTAFOLIO/Parciales/parcial2_alumnos_2-2024 - 1er Semestre",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="89f2d19e-20d4-449c-83b9-e215acf19de2" name="Changes" comment="" />
+      <created>1751061551236</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751061551236</updated>
+      <workItem from="1751061552384" duration="18000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
