@@ -330,7 +330,19 @@ public class TGrafoNoDirigido<T> extends TGrafoDirigido<T> implements IGrafoNoDi
      */
     @Override
     public boolean esConexo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        // Si no hay vertices, considero que es conexo:
+        if (getVertices().isEmpty()) {
+            return true;
+        }
+
+        // Elijo un vertice al azar:
+        IVertice start = getVertices().values().iterator().next();
+
+        Collection<IVertice> alcanzados = bpf(start);
+
+        // Si alcanzo todos los vertices, es conexo:
+        return alcanzados.size() == getVertices().size();
     }
 
     /**
@@ -338,10 +350,44 @@ public class TGrafoNoDirigido<T> extends TGrafoDirigido<T> implements IGrafoNoDi
      * @param origen El vértice de origen.
      * @param destino El vértice de destino.
      * @return Verdadero si los vértices están conectados, falso en caso contrario.
+     * Big O (V + E)
      */
     @Override
     public boolean conectados(IVertice<T> origen, IVertice<T> destino) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        if (origen == null && destino == null) {
+            System.out.println("Alguno de los dos vertices no existe.");
+            return false;
+        }
+        if (origen.getEtiqueta().equals(destino.getEtiqueta())) {
+            return true;
+        }
+
+        desvisitarVertices();
+
+        Queue<IVertice<T>> cola = new LinkedList<>();
+        origen.setVisitado(true);
+        cola.add(origen);
+
+        while (!cola.isEmpty()) {
+            IVertice<T> vertice = cola.poll();
+
+            for (IAdyacencia ady : vertice.getAdyacentes()){
+                IVertice<T> w = ady.getDestino();
+                if (!w.getVisitado()){
+                    // Si encuentro el destino, devuelvo true:
+                    if (w.getEtiqueta().equals(destino.getEtiqueta())) {
+                        return true;
+                    }
+                    // Si no encuentro destino, marco el vertice adyacente como visitado
+                    // y sigo buscando:
+                    w.setVisitado(true);
+                    cola.add(w);
+                }
+            }
+        }
+
+        return false;
     }
 
 }

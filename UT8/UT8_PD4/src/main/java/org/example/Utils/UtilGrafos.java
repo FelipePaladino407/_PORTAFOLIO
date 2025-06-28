@@ -1,8 +1,6 @@
 package org.example.Utils;
 
-import org.example.IArista;
-import org.example.IGrafoDirigido;
-import org.example.IVertice;
+import org.example.*;
 
 import java.lang.reflect.Constructor;
 import java.util.*;
