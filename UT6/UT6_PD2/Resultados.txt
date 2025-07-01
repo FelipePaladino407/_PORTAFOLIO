@@ -1,4 +1,4 @@
-Factor  |  Prom Insert  |  Prom Busq Exit | Prom Busq Sin Exito
+    Factor  | Prom. Insert|  Prom. Busq Exito | Prom Busq Sin Exito
      70%    |    0.49     |       1.36        |       0.68
      75%    |    0.45     |       1.48        |       0.68
      80%    |    0.33     |       1.26        |       0.94
@@ -14,11 +14,17 @@ Factor  |  Prom Insert  |  Prom Busq Exit | Prom Busq Sin Exito
      98%    |    0.48     |       1.48        |       1.20
      99%    |    0.53     |       1.52        |       0.98
 
-Nótese que mi implementación de la tabla hash maneja las colisiones con encadenamiento separado (Separate Chaining). Los valores se condicen perfectamente con el promedio de la cantidad de operaciones para sus respectivos factores de carga. 
+Nótese que mi implementación de la tabla hash maneja las colisiones con encadenamiento
+separado (Separate Chaining).
+Los valores se condicen perfectamente con el promedio de la cantidad de operaciones para
+sus respectivos factores de carga.
 
- Según Weiss: "El rendimiento no se degrada abruptamente cuando la tabla se llena. Las operaciones de
+Según el amigo Weiss:
+"El rendimiento no se degrada abruptamente cuando la tabla se llena. Las operaciones de
 inserción, búsqueda y borrado dependen del tamaño promedio de las listas enlazadas, con un
-coste esperado de 𝑂(1 + 𝜆), donde 𝜆 es el factor de carga." Según otras fuentes, una búsqueda exitosa realiza 1 + 𝜆/2 comparaciones
+coste esperado de 𝑂(1 + 𝜆), donde 𝜆 es el factor de carga."
 
-Ej: Busquedas en factor 0.95:
+Según otras fuentes, una búsqueda exitosa realiza 1 + 𝜆/2 comparaciones
+
+Ej: Búsquedas en factor 0.95:
 1+(0.95/2) = 1.47, parecido a 1.58 

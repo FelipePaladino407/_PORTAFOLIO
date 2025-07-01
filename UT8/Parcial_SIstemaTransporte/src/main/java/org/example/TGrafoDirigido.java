@@ -428,49 +428,4 @@ public class TGrafoDirigido<T> implements IGrafoDirigido<T> {
         }
         return null;
     }
-
-    public boolean esFuertementeConexo(){
-        if (getVertices().isEmpty()) {
-            return true;
-        }
-        // Elijo un vertice de partida:
-        IVertice<T> start = getVertices().values().iterator().next();
-
-        // Hago búsqueda en profundidad con el grafo original.
-        Collection<IVertice<T>> alcanzables = this.bpf(start);
-        if (alcanzables.size() != getVertices().size()) {
-            return false;
-        }
-
-        TGrafoDirigido<T> transpuesto = this.grafoTranspuesto();
-
-        // Busqueda en profundidad desde el transpuesto:
-        Collection<IVertice<T>> alcanzablesT = transpuesto.bpf(start);
-        return alcanzablesT.size() == getVertices().size();
-
-    }
-
-    /**
-     * Construye y retorna el grafo transpuesto (aristas invertidas).
-     */
-    private TGrafoDirigido<T> grafoTranspuesto() {
-        // Recojo todos los vértices sin sus aristas
-        Collection<IVertice<T>> verts = new ArrayList<>();
-        for (IVertice<T> v : getVertices().values()) {
-            verts.add(new TVertice<>(v.getEtiqueta()));
-        }
-        // Preparo lista de aristas invertidas
-        List<IArista> aristasInv = new ArrayList<>();
-        for (IVertice<T> v : getVertices().values()) {
-            for (IAdyacencia<T> ady : v.getAdyacentes()) {
-                aristasInv.add(new TArista(ady.getDestino().getEtiqueta(),
-                        v.getEtiqueta(),
-                        ady.getCosto()));
-            }
-        }
-        // Construyo el nuevo grafo dirigido
-        return new TGrafoDirigido<>(verts, aristasInv);
-    }
 }
-
-

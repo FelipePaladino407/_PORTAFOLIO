@@ -27,8 +27,8 @@ public class PruebasWarshallEjercicio2 {
     public static void main(String[] args) {
 
         TGrafoDirigido grafito = UtilGrafos.cargarGrafo(
-                "/home/felipe/Documents/AED/UT7_PD3/src/main/java/org/example/aereopuertos.txt",
-                "/home/felipe/Documents/AED/UT7_PD3/src/main/java/org/example/conexiones.txt",
+                "/home/felipe/Documents/AED/_PORTAFOLIO/UT7/UT7_PD3/src/main/java/org/example/aereopuertos.txt",
+                "/home/felipe/Documents/AED/_PORTAFOLIO/UT7/UT7_PD3/src/main/java/org/example/conexiones.txt",
                 false,
                 TGrafoDirigido.class);
 

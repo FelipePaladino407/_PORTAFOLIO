@@ -172,6 +172,4 @@ public interface IGrafoDirigido<T> {
      * @return true si el grafo tiene un ciclo, false en caso contrario
      */
     boolean tieneCiclo();
-
-    public boolean esFuertementeConexo();
 }
