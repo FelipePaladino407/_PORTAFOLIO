@@ -471,6 +471,132 @@ public class TGrafoDirigido<T> implements IGrafoDirigido<T> {
         // Construyo el nuevo grafo dirigido
         return new TGrafoDirigido<>(verts, aristasInv);
     }
+
+    public TCamino<T> caminoMinimoBFS(Comparable origen, Comparable destino){
+        Map<Comparable,Integer> dist = new HashMap<>();
+        Map<Comparable,Comparable> pred = new HashMap<>();
+        for (Comparable v : vertices.keySet()) {
+            dist.put(v, Integer.MAX_VALUE);
+            pred.put(v, null);
+        }
+        Queue<Comparable> q = new LinkedList<>();
+        dist.put(origen, 0);
+        q.add(origen);
+
+        // 2) BFS
+        while (!q.isEmpty()) {
+            Comparable u = q.poll();
+            if (u.equals(destino)) break;
+            for (IAdyacencia<T> ady : vertices.get(u).getAdyacentes()) {
+                Comparable v = ady.getDestino().getEtiqueta();
+                if (dist.get(v) == Integer.MAX_VALUE) {
+                    dist.put(v, dist.get(u) + 1);
+                    pred.put(v, u);
+                    q.add(v);
+                }
+            }
+        }
+
+        // 3) Reconstruir camino
+        TCamino<T> camino = new TCamino<>(buscarVertice(origen));
+        LinkedList<Comparable> stack = new LinkedList<>();
+        Comparable paso = destino;
+        while (paso != null && !paso.equals(origen)) {
+            stack.push(paso);
+            paso = pred.get(paso);
+        }
+        if (paso == null) return null;  // no hay camino
+        // origen al final
+        while (!stack.isEmpty()) {
+            Comparable etiqueta = stack.pop();
+            // buscamos la adyacencia para sumar coste = 1
+            IVertice<T> uVert = buscarVertice(camino.getOtrosVertices().isEmpty()
+                    ? origen
+                    : camino.getOtrosVertices().stream().reduce((a,b)->b).get());
+            for (IAdyacencia<T> ady : uVert.getAdyacentes()) {
+                if (ady.getDestino().getEtiqueta().equals(etiqueta)) {
+                    camino.agregarAdyacencia(ady);
+                    break;
+                }
+            }
+        }
+        return camino;
+    }
+
+    /**
+     * Dijkstra sin prioridad: complejidad O(V^2 + E).
+     */
+    public TCamino<T> caminoMinimoDijkstraSinPQ(Comparable origen, Comparable destino) {
+        int n = vertices.size();
+        Map<Comparable,Double> dist = new HashMap<>();
+        Map<Comparable,Comparable> pred = new HashMap<>();
+        Set<Comparable> S = new HashSet<>();           // vértices cuyas distancias ya son definitivas
+
+        // 1) Inicializar
+        for (Comparable v : vertices.keySet()) {
+            dist.put(v, Double.POSITIVE_INFINITY);
+            pred.put(v, null);
+        }
+        dist.put(origen, 0.0);
+
+        // 2) Repetir V veces o hasta procesar destino
+        for (int i = 0; i < n; i++) {
+            // 2.1) Elegir u ∉ S con dist mínima
+            Comparable u = null;
+            double minDist = Double.POSITIVE_INFINITY;
+            for (Comparable v : vertices.keySet()) {
+                if (!S.contains(v) && dist.get(v) < minDist) {
+                    minDist = dist.get(v);
+                    u = v;
+                }
+            }
+            if (u == null) break;             // no hay más alcanzables
+            if (u.equals(destino)) break;     // ya llegamos
+
+            // 2.2) Marcar u como definitivo
+            S.add(u);
+
+            // 2.3) Relajar adyacencias de u
+            for (IAdyacencia<T> ady : vertices.get(u).getAdyacentes()) {
+                Comparable v = ady.getDestino().getEtiqueta();
+                if (!S.contains(v)) {
+                    double alt = dist.get(u) + ady.getCosto();
+                    if (alt < dist.get(v)) {
+                        dist.put(v, alt);
+                        pred.put(v, u);
+                    }
+                }
+            }
+        }
+
+        // 3) Reconstruir camino igual que antes
+        TCamino<T> camino = new TCamino<>(buscarVertice(origen));
+        LinkedList<Comparable> stack = new LinkedList<>();
+        Comparable paso = destino;
+        while (paso != null && !paso.equals(origen)) {
+            stack.push(paso);
+            paso = pred.get(paso);
+        }
+        if (paso == null) return null;  // no hay camino
+
+        while (!stack.isEmpty()) {
+            Comparable etiqueta = stack.pop();
+            // recuperar vértice anterior en el camino
+            IVertice<T> uVert = buscarVertice(
+                    camino.getOtrosVertices().isEmpty()
+                            ? origen
+                            : camino.getOtrosVertices().stream().reduce((a,b)->b).get()
+            );
+            for (IAdyacencia<T> ady : uVert.getAdyacentes()) {
+                if (ady.getDestino().getEtiqueta().equals(etiqueta)) {
+                    camino.agregarAdyacencia(ady);
+                    break;
+                }
+            }
+        }
+        return camino;
+    }
+
 }
 
 

@@ -174,4 +174,6 @@ public interface IGrafoDirigido<T> {
     boolean tieneCiclo();
 
     public boolean esFuertementeConexo();
+
+    public TCamino<T> caminoMinimoBFS(Comparable origen, Comparable destino);
 }

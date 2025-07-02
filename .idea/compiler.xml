@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Junit-PD7" />
+        <module name="UT7_PD7" />
+        <module name="UT7_PD8" />
+        <module name="parcial2 (2)" />
+        <module name="parcial2 (4)" />
+        <module name="UT7_PD3" />
+        <module name="Parcial_SIstemaTransporte" />
+        <module name="UT7_PD4" />
+        <module name="UT7_PD5" />
+        <module name="UT3_PD10" />
+        <module name="UT3_PD11" />
+        <module name="UT7_PD2" />
+        <module name="UT6_PD7" />
+        <module name="UT6_PD4" />
+        <module name="UT6_PD5" />
+        <module name="UTGrafos" />
+        <module name="UT6_PD3" />
+        <module name="UT5_PD7" />
+        <module name="parcial2 (1)" />
+        <module name="UT9_PD1" />
+        <module name="parcial2 (3)" />
+        <module name="UT9_PD3" />
+        <module name="UT4_PD0" />
+        <module name="UT9_PD4" />
+        <module name="UT4_PD5" />
+        <module name="parcial2" />
+        <module name="UT8_PD4" />
+        <module name="UT8_PD2" />
+        <module name="UT8_PD3" />
+        <module name="UT3_PD4" />
+        <module name="UT3_PD12" />
+        <module name="UT8_PD1_" />
+        <module name="UT3_PD13" />
+        <module name="UT3_PD9" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

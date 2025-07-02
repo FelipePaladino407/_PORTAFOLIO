@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/UT3/UT3_PD4/pom.xml" />
+        <option value="$PROJECT_DIR$/UT3/UT3_PD9/pom.xml" />
+        <option value="$PROJECT_DIR$/UT3/UT3_PD10/pom.xml" />
+        <option value="$PROJECT_DIR$/UT3/UT3_PD11/pom.xml" />
+        <option value="$PROJECT_DIR$/UT3/UT3_PD12/pom.xml" />
+        <option value="$PROJECT_DIR$/UT3/UT3_PD13/pom.xml" />
+        <option value="$PROJECT_DIR$/UT3/Junit-PD7/pom.xml" />
+        <option value="$PROJECT_DIR$/UT4/UT4_PD0/pom.xml" />
+        <option value="$PROJECT_DIR$/UT4/UT4_PD5/pom.xml" />
+        <option value="$PROJECT_DIR$/UT5/UT5_PD7/pom.xml" />
+        <option value="$PROJECT_DIR$/UT6/UT6_PD3/pom.xml" />
+        <option value="$PROJECT_DIR$/UT6/UT6_PD4/pom.xml" />
+        <option value="$PROJECT_DIR$/UT6/UT6_PD5/pom.xml" />
+        <option value="$PROJECT_DIR$/UT6/UT6_PD7/pom.xml" />
+        <option value="$PROJECT_DIR$/UT7/UT7_PD2/pom.xml" />
+        <option value="$PROJECT_DIR$/UT7/UT7_PD3/pom.xml" />
+        <option value="$PROJECT_DIR$/UT7/UT7_PD4/pom.xml" />
+        <option value="$PROJECT_DIR$/UT7/UT7_PD5/pom.xml" />
+        <option value="$PROJECT_DIR$/UT7/UT7_PD7/pom.xml" />
+        <option value="$PROJECT_DIR$/UT7/UT7_PD8/pom.xml" />
+        <option value="$PROJECT_DIR$/UT8/UT8_PD1/pom.xml" />
+        <option value="$PROJECT_DIR$/UT8/UT8_PD2/pom.xml" />
+        <option value="$PROJECT_DIR$/UT8/UT8_PD3/pom.xml" />
+        <option value="$PROJECT_DIR$/UT8/UT8_PD4/pom.xml" />
+        <option value="$PROJECT_DIR$/UT8/UTGrafos/pom.xml" />
+        <option value="$PROJECT_DIR$/UT8/Parcial_SIstemaTransporte/pom.xml" />
+        <option value="$PROJECT_DIR$/UT9/UT9_PD1/pom.xml" />
+        <option value="$PROJECT_DIR$/UT9/UT9_PD3/pom.xml" />
+        <option value="$PROJECT_DIR$/UT9/UT9_PD4/pom.xml" />
+        <option value="$PROJECT_DIR$/Parciales/Parcial_1/Parcial2/pom.xml" />
+        <option value="$PROJECT_DIR$/Parciales/parcial2_2024/Parcial2/pom.xml" />
+        <option value="$PROJECT_DIR$/Parciales/Segundo parcial 2023/parcial2/parcial2/pom.xml" />
+        <option value="$PROJECT_DIR$/Parciales/parcial2_alumnos_2-2024 - 1er Semestre/Parcial2/pom.xml" />
+        <option value="$PROJECT_DIR$/Parciales/Parcial 1er Semestre 2024 - Trenes y Buses /Parcial2/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="21 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
