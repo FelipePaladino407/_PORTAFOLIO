@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16c1be95-4e5f-4c86-8345-8b087b4261ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/IAdyacencia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/IArista.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/IAristas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/ICamino.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/IGrafoDirigido.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/IGrafoNoDirigido.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/IVertice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Parcial/IGrafoRedTransporte.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Parcial/Ruta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Parcial/RutaConectada.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Parcial/SistemaTransporte.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Parcial/TGrafoRedTransporte.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TAdyacencia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TArista.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TAristas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TCamino.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TCaminos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TGrafoDirigido.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TGrafoNoDirigido.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/TVertice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Utils/AristaPQ.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Utils/DSU.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Utils/ManejadorArchivosGenerico.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../UT8/Parcial_SIstemaTransporte/src/main/java/org/example/Utils/UtilGrafos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +29,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/felipe/Documents/AED/_PORTAFOLIO/Parciales/parcial2_alumnos_2-2024 - 1er Semestre",
+    "last_opened_file_path": "/home/felipe/Documents/AED/_PORTAFOLIO/Parciales/Segundo parcial 2023",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,6 +56,7 @@
       <workItem from="1750802336859" duration="321000" />
       <workItem from="1751061472110" duration="34000" />
       <workItem from="1751299388685" duration="17000" />
+      <workItem from="1751488536402" duration="20000" />
     </task>
     <servers />
   </component>

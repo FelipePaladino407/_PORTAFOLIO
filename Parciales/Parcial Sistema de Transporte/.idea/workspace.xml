@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89f2d19e-20d4-449c-83b9-e215acf19de2" name="Changes" comment="">
+    <list default="true" id="ebc3ac82-4397-4de4-aace-4bbdfe37561a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Parcial2/src/main/java/uy/edu/ucu/aed/SistemaTransporte/SistemaTransporte.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Parcial_1/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Parcial_1/.idea/Parcial_1.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Parcial_1/.idea/compiler.xml" beforeDir="false" />
@@ -66,23 +67,30 @@
       <change beforePath="$PROJECT_DIR$/../Parcial_1/Parcial2/target/test-classes/uy/edu/ucu/aed/parcial2/TGrafoDeLaRedTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Parcial_1/Segundo parcial - Parte 3-1 2024 - 1er Semestre-2.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../parcial2_2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../parcial2_2024/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/parcial2_alumnos_2-2024 - 1er Semestre.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/parcial2_alumnos_2-2024 - 1er Semestre.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parcial2/src/main/java/uy/edu/ucu/aed/IAdyacencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parcial2/src/main/java/uy/edu/ucu/aed/IAdyacencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parcial2/src/main/java/uy/edu/ucu/aed/Parcial2024/MainParcial2024.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parcial2/src/uy/edu/ucu/aed/Parcial2024/MainParcial2024.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/.idea/parcial2_alumnos_2-2024 - 1er Semestre.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/.idea/parcial2_alumnos_2-2024 - 1er Semestre.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/Parcial2/src/main/java/uy/edu/ucu/aed/IAdyacencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/Parcial2/src/main/java/uy/edu/ucu/aed/IAdyacencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/Parcial2/src/main/java/uy/edu/ucu/aed/Parcial2024/MainParcial2024.java" beforeDir="false" afterPath="$PROJECT_DIR$/../parcial2_alumnos_2-2024 - 1er Semestre/Parcial2/src/uy/edu/ucu/aed/Parcial2024/MainParcial2024.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="2z6poVAGTA31cgrXvaKpWIXMuVS" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2zNPgztju9cWt43wrJK44c0ECYS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -112,17 +120,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="89f2d19e-20d4-449c-83b9-e215acf19de2" name="Changes" comment="" />
-      <created>1751061551236</created>
+      <changelist id="ebc3ac82-4397-4de4-aace-4bbdfe37561a" name="Changes" comment="" />
+      <created>1751568672707</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1751061551236</updated>
-      <workItem from="1751061552384" duration="18000" />
-      <workItem from="1751299407360" duration="2085000" />
-      <workItem from="1751488448379" duration="87000" />
-      <workItem from="1751491129390" duration="724000" />
-      <workItem from="1751568012782" duration="78000" />
-      <workItem from="1751568545391" duration="127000" />
+      <updated>1751568672707</updated>
+      <workItem from="1751568673879" duration="1995000" />
     </task>
     <servers />
   </component>

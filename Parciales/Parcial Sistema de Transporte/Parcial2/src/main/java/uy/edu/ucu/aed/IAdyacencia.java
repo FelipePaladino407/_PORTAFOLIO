@@ -1,4 +1,4 @@
-package uy.edu.ucu.aed.Parcial2024.;
+package uy.edu.ucu.aed;
 
 /**
  * Esta interfaz representa una adyacencia en una estructura de datos de grafo.
